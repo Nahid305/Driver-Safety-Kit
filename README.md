@@ -1,48 +1,118 @@
-# Driver Safety Kit
+# 🚗 Driver Safety Kit 🔐🧠
 
-A real-time safety monitoring system that combines driver authentication, drowsiness detection, head pose estimation, and alcohol detection using computer vision and audio alerts.
+A real-time AI-powered system to monitor and enhance driver safety using face recognition, drowsiness detection, head pose estimation, and a dummy alcohol detection module. Designed with a modular Python architecture and computer vision techniques.
 
-## Features
+---
 
-- Face Authentication: Recognizes and verifies the driver using facial recognition.
-- Drowsiness Detection: Monitors eye closure, blinking rate, and yawning using Mediapipe FaceMesh.
-- Head Pose Estimation: Detects if the driver is distracted or not facing the road.
-- Alcohol Detection (Coming Soon): To be integrated using sensors or equivalent module.
-- Audio Alerts: Raises alarm when signs of drowsiness or inattention are detected.
+![Driver Safety Kit Banner](assets/banner.png) <!-- Add your own banner here -->
 
-## Modules
+---
 
-- `main.py`: Main control loop integrating all modules.
-- `authentication.py`: Face recognition and identity verification.
-- `head_pose_estimation.py`: Detects head orientation using 3D face landmarks.
-- `drowsiness_detection.py`: Analyzes eyes and mouth for drowsiness signs.
-- `utility.py`: Contains helper functions for drawing, audio, camera handling, etc.
+## 📌 Features
 
-## Setup
+- 🔒 **Face Authentication**  
+  Authenticates the driver against a known faces database using `face_recognition`.
 
-### Requirements
+- 🍺 **Alcohol Detection (Simulated)**  
+  Simulates alcohol detection using 4 parameters (body temperature, facial gestures, body odor, NDIR sensor) and blocks access if 3 out of 4 tests fail.
+
+- 😴 **Drowsiness Detection**  
+  Detects drowsiness based on prolonged eye closure, blink rate, and yawning using Mediapipe FaceMesh.
+
+- 👀 **Head Pose Estimation**  
+  Continuously tracks driver's head direction to detect distractions (left/right) for over 10 seconds.
+
+- 🔊 **Audio Alerts**  
+  Plays warning alarms using `pygame` when drowsiness or distraction is detected.
+
+---
+
+## 🧠 Project Workflow
+
+1. **Face Authentication**  
+   Driver’s face is captured and matched with the pre-registered face database. Access is granted only if a match is found.
+
+2. **Alcohol Detection (Dummy Module)**  
+   Simulates 4 checks. If **3 out of 4** are positive, driver is assumed drunk → ❌ Access denied.
+
+3. **Drowsiness Monitoring**  
+   Continuously monitors for sleep signs. Alerts are triggered in real-time if thresholds are crossed.
+
+4. **Head Pose Monitoring**  
+   Detects if driver is not looking straight. A warning alert is played if distraction lasts too long.
+
+---
+
+## 🗃️ Folder Structure
+
+  Driver-Safety-Kit/
+│
+├── assets/ # MP3 sounds & banner image
+├── known_faces/ # Registered face images (.jpg/.png)
+├── modules/
+│ ├── authentication.py
+│ ├── alcohol_check.py
+│ ├── drowsiness_detection.py
+│ ├── head_pose_estimation.py
+│ ├── utility.py
+│
+├── logs/ # (optional) session logs
+├── main.py # Main controller script
+├── requirements.txt
+├── LICENSE
+└── README.md
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### ✅ Requirements
+
 - Python 3.7+
-- Install dependencies:
-```sh
+- Dependencies:
+```bash
+
 pip install -r requirements.txt
-```
 
-### Additional Files
-- Place known driver images in a `known_faces/` directory.
-- Ensure `authentication.mp3` and `emergency-alarm.mp3` exist in the root or `assets/` folder.
+📁 Additional Files
 
-### Run the Application
-```sh
-python main.py
-```
+.Place known face images in the known_faces/ folder (e.g., john.jpg)
+.Place sound files in the assets/ folder:
+   .authentication.mp3
+   .emergency-alarm.mp3
 
-## Future Improvements
+🚀 Run the Project
+  python main.py
+  Make sure your webcam is accessible. Press ESC or Q to quit.
 
-- Integrate alcohol detection using hardware sensor input.
-- Upload alerts/logs to a cloud dashboard.
-- GPS and speed tracking integration.
-- Mobile app notification system.
+🧪Alcohol Detection Logic
+  Simulates 4 conditions:
+     Body Temperature (simulated value)
+     Facial Gestures (random)
+     Body Odor (random)
+     BAC (simulated)
+❌ If 3 out of 4 conditions fail → Driver access is blocked
 
-## License
 
-Licensed under the MIT License
+🌟 Future Improvements
+  Integrate actual hardware sensors for alcohol & temperature
+  Upload logs to cloud dashboard (Firebase / MongoDB)
+  GPS and speed integration
+  Mobile notification system for emergency alerts
+  Deploy with Streamlit or Gradio for web-based UI
+
+📄 License
+MIT License
+
+🙌 Credits
+  Built using:
+  Python
+  OpenCV
+  MediaPipe
+  Face Recognition
+  Pygame
+
+🙌 Created By
+Nahid Ansari – AI & Data Science Engineer 💼
+Built with ❤️ 
